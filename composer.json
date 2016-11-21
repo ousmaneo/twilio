@@ -1,19 +1,19 @@
 {
     "name": "laravel-notification-channels/twilio",
-    "description": "A boilerplate for contributions.",
-    "homepage": "https://github.com/laravel-notification-channels/twilio",
+    "description": "",
+    "homepage": "https://github.com/reganjohnson/twilio",
     "license": "MIT",
     "authors": [
         {
-            "name": "Gregorio Hernández Caso",
-            "email": "gregoriohc@gmail.com",
-            "homepage": "https://github.com/gregoriohc",
+            "name": "Regan Johnson",
+            "email": "regan@soaptray.com",
+            "homepage": "https://github.com/reganjohnson",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=5.5.9",
-        "twilio/sdk": "^4.11",
+        "twilio/sdk": "^5.4",
         "illuminate/notifications": "5.1.*|5.2.*|5.3.*",
         "illuminate/support": "5.1.*|5.2.*|5.3.*",
         "illuminate/events": "5.1.*|5.2.*|5.3.*",

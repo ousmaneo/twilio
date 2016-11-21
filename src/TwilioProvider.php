@@ -3,7 +3,7 @@
 namespace NotificationChannels\Twilio;
 
 use Illuminate\Support\ServiceProvider;
-use Services_Twilio as TwilioService;
+use Twilio\Rest\Client as TwilioClient;
 
 class TwilioProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class TwilioProvider extends ServiceProvider
                 $config = $this->app['config']['services.twilio'];
 
                 return new Twilio(
-                    $this->app->make(TwilioService::class, [
+                    $this->app->make(TwilioClient::class, [
                         $config['account_sid'],
                         $config['auth_token'],
                     ]),

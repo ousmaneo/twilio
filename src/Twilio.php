@@ -3,14 +3,14 @@
 namespace NotificationChannels\Twilio;
 
 use NotificationChannels\Twilio\Exceptions\CouldNotSendNotification;
-use Services_Twilio as TwilioService;
+use Twilio\Rest\Client as TwilioClient;
 
 class Twilio
 {
     /**
-     * @var TwilioService
+     * @var TwilioClient
      */
-    protected $twilioService;
+    protected $twilioClient;
 
     /**
      * Default 'from' from config.
@@ -21,12 +21,12 @@ class Twilio
     /**
      * Twilio constructor.
      *
-     * @param  TwilioService  $twilioService
+     * @param  TwilioClient  $twilioClient
      * @param  string  $from
      */
-    public function __construct(TwilioService $twilioService, $from)
+    public function __construct(TwilioClient $twilioClient, $from)
     {
-        $this->twilioService = $twilioService;
+        $this->twilioClient = $twilioClient;
         $this->from = $from;
     }
 
@@ -44,30 +44,34 @@ class Twilio
             return $this->sendSmsMessage($message, $to);
         }
 
-        if ($message instanceof TwilioCallMessage) {
-            return $this->makeCall($message, $to);
-        }
+        // TODO: Enable MakeCall
+//        if ($message instanceof TwilioCallMessage) {
+//            return $this->makeCall($message, $to);
+//        }
 
         throw CouldNotSendNotification::invalidMessageObject($message);
     }
 
     protected function sendSmsMessage($message, $to)
     {
-        return $this->twilioService->account->messages->sendMessage(
-            $this->getFrom($message),
+        return $this->twilioClient->messages->create(
             $to,
-            trim($message->content)
+            [
+                'from' => $this->getFrom($message),
+                'body' => trim($message->content),
+            ]
         );
     }
 
-    protected function makeCall($message, $to)
-    {
-        return $this->twilioService->account->calls->create(
-            $this->getFrom($message),
-            $to,
-            trim($message->content)
-        );
-    }
+    // TODO: Enable MakeCall
+//    protected function makeCall($message, $to)
+//    {
+//        return $this->twilioCLient->account->calls->create(
+//            $this->getFrom($message),
+//            $to,
+//            trim($message->content)
+//        );
+//    }
 
     protected function getFrom($message)
     {
