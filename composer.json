@@ -1,13 +1,13 @@
 {
-    "name": "reganjohnson/twilio",
+    "name": "whackashoe/twilio-notifications-channel",
     "description": "",
-    "homepage": "https://github.com/reganjohnson/twilio",
+    "homepage": "https://github.com/whackashoe/twilio-notifications-channel",
     "license": "MIT",
     "authors": [
         {
             "name": "Regan Johnson",
             "email": "regan@soaptray.com",
-            "homepage": "https://github.com/reganjohnson",
+            "homepage": "https://github.com/whackashoe",
             "role": "Developer"
         }
     ],
